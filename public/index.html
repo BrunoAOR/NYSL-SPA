@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title> NYSL Schedule</title>
+
+	<!-- meta tags for mobile -->
+
+	<!-- Icons for Android -->
+	<link rel="shortcut icon" sizes="128x128" href="assets/icon/app_icon_128.png">
+	<link rel="shortcut icon" sizes="196x196" href="assets/icon/app_icon_196.png">
+
+	<!-- Icons for iOS Safari -->
+	<link rel="apple-touch-icon" sizes="120x120" href="assets/icon/app_icon_120.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="assets/icon/app_icon_152.png">
+
+	<!-- Hides address bar in iPhone Safari -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<!-- Hides address bar in Android and iOS Chrome -->
+	<meta name="mobile-web-app-capable" content="yes">
+
+	<!-- Orders all browsers to show content with intended size and not auto-resize or auto-fit the page. Also removes a tap-delay for some older browsers -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+
+	<!-- This is used to style to status bar in iOS -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+	<!-- End of meta tags for mobile -->
+
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<!-- Firebase -->
+	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase-app.js"></script>
+
+	<!-- BOOTSTRAP -->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<!-- Custom css files -->
+	<link rel="stylesheet" type="text/css" href="transitions.css">
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body id="body">
+
+	<div id="sign-in-div" class="glass" style="display: none">
+		<div id="sign-in-form" class="panel">
+			<div class="panel-heading text-center">
+				Sign in...
+			</div>
+			<div class="panel-body">
+				<div id="sign-in-info" style="display: none">
+					Signing in...
+				</div>
+				<div id="sign-in-input">
+					<div class="form-group">
+						<label for="email">Email:</label>
+						<input id="email" type="email" class="form-control">
+						<label for="password">Password:</label>
+						<input id="password" type="password" class="form-control">
+					</div>
+					<div class="row">
+						<div class="col-xs-6 text-center">
+							<button type="button" class="btn btn-success app-btn-accept">Sign in</button>
+						</div>
+						<div class="col-xs-6 text-center">
+							<button type="button" class="btn btn-danger app-btn-cancel">Cancel</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+
+		<header id="header">
+			<span class="glyphicon glyphicon-star"></span>
+			<h1>NYSL Schedule</h1>
+			<span class="glyphicon glyphicon-star"></span>
+		</header>
+
+		<div id="placeholder" class="text-center" style="color: white">
+			Loading matches info...
+		</div>
+
+		<div id="content" style="display: none">
+			<div id="content-left">
+
+			</div>
+
+			<div id="content-separator">
+
+			</div>
+
+			<div class="slide-container">
+
+				<div id="home" class="slide-element slide-element-active">
+
+					<div id="team-filter">
+						<div class="row app-row-vertical-center">
+							<div class="col-xs-5 col-xs-offset-1">
+								<label for="team-selection" class="text-right">Select your team: </label>
+							</div>
+							<div class="col-xs-4">
+								<select id="team-selection" class="form-control">
+								<option value="">All</option>
+								<option>U1</option>
+								<option>U2</option>
+								<option>U3</option>
+								<option>U4</option>
+							</select>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="panel-group" id="schedule-outlet">
+
+					</div>
+
+					<template id="schedule-template"><div class="panel">
+					<div class="panel-heading app-vertical-align">
+						<h3 class="panel-title text-center">
+							<a data-toggle="collapse" data-parent="#schedule-outlet" href="#collapseNum" class="app-panel-title">Month Comes here<span class="glyphicon glyphicon-chevron-down"></span></a>
+						</h3>
+					</div>
+
+					<div id="collapseNum" class="panel-collapse collapse">
+						<table class="table table-striped">
+							<tbody class="app-table-outlet">
+								<!-- Will be filled by javascript -->
+							</tbody>
+						</table>
+					</div>
+				</div></template>
+
+				</div>
+
+				<div id="match-info" class="slide-element">
+					<div class="panel">
+						<div class="panel-heading">
+
+							<div class="row">
+								<div class="col-xs-1 text-center">
+									<span class="glyphicon glyphicon-chevron-left app-back-button"></span>
+								</div>
+								<div class="col-xs-10 text-center">
+									<span class="app-match-header">Team 1 vs Team 2</span>
+								</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="app-info">
+								<div class="text-center app-match-date">Date</div>
+								<div class="text-center app-match-time">Time</div>
+
+								<div class="row app-match-teams app-row-vertical-center">
+									<div class="col-xs-4 col-xs-offset-1 text-center app-match-team" data-team="">Team 1</div>
+									<div class="col-xs-2 text-center app-match-vs">vs</div>
+									<div class="col-xs-4 text-center app-match-team" data-team="">Team 2</div>
+								</div>
+
+								<div class="text-center app-match-location">Location</div>
+								<div class="text-center app-match-address">Address</div>
+								<div class="app-match-map">
+									<div id="google-map"></div>
+									<!--									<iframe src="" width="250" height="187" style="border:0" allowfullscreen></iframe>-->
+								</div>
+							</div>
+
+							<div id="app-comments">
+								<div id="app-comments-title">
+									Comments about the match:
+								</div>
+
+								<div id="comments-outlet">
+									<!-- Will be shown if a user has signed-in and will be filled from js -->
+								</div>
+
+								<div id="app-comments-add">
+									<div id="app-comments-add-title">
+										Post new comment:
+									</div>
+									<textarea rows="5" placeholder="Write your comment here"></textarea>
+									<button id="post-btn" type="button" class="btn btn-success">Post</button>
+								</div>
+
+							</div>
+
+							<template id="comments-template"><div class="app-comment">
+									<div class="app-comment-timestamp">
+										
+									</div>
+									<div class="app-comment-userinfo">
+										<span class="app-comment-user"> </span> said:
+									</div>
+									<div class="app-comment-comment">
+										
+									</div>
+							</div></template>
+
+						</div>
+					</div>
+				</div>
+
+				<div id="teamInfo" class="slide-element">
+					<div class="panel">
+						<div class="panel-heading">
+
+							<div class="row">
+								<div class="col-xs-1 text-center">
+									<span class="glyphicon glyphicon-chevron-left app-back-button"></span>
+								</div>
+								<div class="col-xs-10 text-center">
+									<span class="app-team-header">Team Info</span>
+								</div>
+							</div>
+						</div>
+
+						<table class="table">
+							<tbody>
+								<tr>
+									<th>
+										<p>Yay, we made it! </p>
+									</th>
+									<td>Pos</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<footer style="display: none">
+
+			<div class="row">
+				<div class="col-xs-3">
+					<div id="sign-in-btn" class="app-footer-button app-vertical-align">
+						<h5>Sign in</h5>
+					</div>
+				</div>
+				<div class="col-xs-3">
+					<div data-theme="blue" class="app-footer-button app-vertical-align app-theme-btn">
+						<h5>Blue<br>theme</h5>
+					</div>
+				</div>
+				<div class="col-xs-3">
+					<div data-theme="black" class="app-footer-button app-vertical-align app-theme-btn">
+						<h5>Black<br>theme</h5>
+					</div>
+				</div>
+				<div class="col-xs-3">
+					<div data-theme="party" class="app-footer-button app-vertical-align app-theme-btn">
+						<h5>PARTY<br>theme</h5>
+					</div>
+				</div>
+			</div>
+
+		</footer>
+	</div>
+
+
+
+
+	<!-- Firebase -->
+
+	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+	<script>
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyCnksPu8wtHLDAGM--WNabdGc3L6ze2rhQ",
+			authDomain: "nysl-spa.firebaseapp.com",
+			databaseURL: "https://nysl-spa.firebaseio.com",
+			projectId: "nysl-spa",
+			storageBucket: "nysl-spa.appspot.com",
+			messagingSenderId: "209379561575"
+		};
+		firebase.initializeApp(config);
+
+	</script>
+	<!-- End of Firebase -->
+
+	<!-- Google maps -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEe06hQrD-oYJsrHVFvto5izRnlAvVLAA"></script>
+	<script src="geolocation-marker.js"></script>
+	<script src="maps.js"></script>
+	<script src="transitions.js"></script>
+	<script src="main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,300 @@
+:root {
+	--nysl-background: #033949;
+	--nysl-headings: #888888;
+	--nysl-detail: #a3ff15;
+}
+
+#body {
+	background-color: var(--nysl-background);
+}
+
+#content {
+	display: flex;
+	justify-content: space-between;
+}
+
+#content-left {
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+#content-separator {
+	border-left: 5px dashed var(--nysl-detail);
+}
+
+.glass {
+	background-color: rgba(0, 0, 0, 0.75);
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+input,
+select,
+option,
+textarea {
+	font-size: 16px !important;
+}
+
+#sign-in-form {
+	width: 80%;
+}
+
+#sign-in-form .panel-heading {
+	color: white;
+	font-weight: bold;
+}
+
+#sign-in-form input {
+	margin-bottom: 10px;
+}
+
+header {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	margin: 10px 0;
+	border: 2px solid var(--nysl-detail);
+	border-radius: 5px;
+}
+
+@media (orientation: landscape) {
+	header {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+}
+
+footer {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#header .glyphicon {
+	color: var(--nysl-detail);
+	font-size: 200%;
+}
+
+#body h1 {
+	display: inline-block;
+	font-size: 30px;
+	text-align: center;
+	padding-bottom: 25px;
+	color: #fff;
+	margin: 0;
+	padding: 5px 5px;
+}
+
+.panel {
+	border: 0;
+}
+
+#schedule-outlet h3,
+.app-match-header,
+.app-team-header {
+	color: white;
+	width: 100%;
+}
+
+.panel-heading div[class*="col-"] {
+	padding: 0 !important;
+}
+
+.panel-heading {
+	background-color: var(--nysl-headings);
+}
+
+.panel-heading:not(.in) {
+	border-radius: 4px;
+}
+
+#schedule-outlet .app-panel-title {
+	text-decoration: none;
+	
+	display: inline-block;
+	width: 100%;
+}
+
+#schedule-outlet .panel-heading,
+#schedule-outlet tr {
+	height: 45px;
+}
+
+.app-vertical-align {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#schedule-outlet th,
+#schedule-outlet td {
+	vertical-align: middle;
+}
+
+.app-panel-title:hover {
+	text-decoration: none;
+}
+
+.panel-heading {
+	position: relative;
+}
+
+.app-side-button-right {
+	float: right;
+}
+
+.app-team-name {
+	font-weight: bold;
+}
+
+.app-table-outlet td,
+#teamInfo td {
+	text-align: right;
+}
+
+.app-match-map {
+	padding-top: 25px;
+	display: flex;
+	justify-content: center;
+}
+
+#google-map {
+	height: 250px;
+	width: 250px;
+	margin: 0;
+}
+
+.app-match-teams {
+	padding: 15px 0;	
+}
+
+.app-row-vertical-center {
+	display: flex;
+	align-items: center;
+}
+
+.app-match-team {
+	font-size: 150%;
+	font-weight: bold;
+}
+
+.app-match-vs {
+	height: 100%;
+}
+
+.app-match-location {
+	font-size: 110%;
+	font-weight: bold;
+}
+
+#team-filter {
+	margin-bottom: 5px;
+}
+
+#team-filter label {
+	color: white;
+}
+
+#team-filter select {
+	color: white;
+	background-color: var(--nysl-headings);
+	border-color: var(--nysl-detail);
+	outline: 0;
+	border: 0;
+}
+
+footer h5 {
+	margin: 0;
+}
+
+footer .row {
+	margin-left: 0;
+	margin-right: 0;
+	height: 45px;
+}
+
+footer *[class*="col-"] {
+	height: 100%;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+.app-footer-button {
+	height: 100%;
+	width: 100%;
+	border-radius: 5px;
+	background-color: rgba(255, 255, 255, 0.05);
+	color: #e0e0e0;
+	font-weight: bold;
+	text-align: center;
+}
+
+.app-footer-button:hover {
+	color: white;
+	background-color: rgba(0, 0, 0, 0.05);
+}
+
+
+/*
+==============================
+Comment section
+==============================
+*/
+
+#app-comments {
+	margin-top: 10px;
+	padding: 5px;
+	border: 1px solid var(--nysl-headings);
+	border-radius: 4px;
+}
+
+#app-comments-title {
+	margin-bottom: 10px
+}
+
+#app-comments-add {
+	margin-top: 20px;
+}
+
+#app-comments-add-title {
+	margin-left: 10px;
+}
+
+#app-comments-add > textarea {
+	display: block;
+	width: 100%;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.app-comment {
+	margin: 5px 0;
+	padding: 2px;
+	border: 1px solid var(--nysl-detail);
+	border-radius: 4px;
+}
+
+.app-comment-timestamp {
+	font-size: 90%;
+	color: var(--nysl-headings);
+}
+
+.app-comment-userinfo {
+	
+}
+
+.app-comment-user {
+	font-size: 110%;
+	font-weight: bold;
+}
+
+.app-comment-comment {
+	padding-left: 5px;
+}

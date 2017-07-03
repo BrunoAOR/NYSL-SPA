@@ -1,0 +1,13 @@
+.slide-container {
+		position: relative;
+		overflow-x: hidden;
+		overflow-y: scroll;
+	}
+
+	.slide-element {
+		display: none;
+}
+
+	.slide-element-active {
+		display: block;
+	}
