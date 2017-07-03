@@ -194,6 +194,7 @@ function updateLayout() {
 			$matchInfoDiv.find('.app-back-button').css('display', '');
 			// Ensure .slide-container has its parent.width as width
 			slideWidth = $('.slide-container').parent().width();
+			
 			// Ensure only #home has .slide-element-active (#home is already inside of .slide-container)
 			//			$('.slide-container').children().removeClass('slide-element-active');
 			//			$home.addClass('slide-element-active');
@@ -214,8 +215,9 @@ function updateLayout() {
 
 			// Put #home as a child of #content-left (sibling to .slide-container BEFORE .slide-container)
 			$('#content-left').prepend($home);
-			// ADd .slide-element to #home
+			// Remove .slide-element and .slide-element-active (if there) from #home
 			$home.removeClass('slide-element');
+			$home.removeClass('slide-element-active');
 			// Ensure #home has a width as element-style of 40% of its container's parent
 			$home.css('width', 0.4 * $home.parent().parent().width());
 			// Ensure #matchInfo->.app-back-button has display: none as element-style
